@@ -1,0 +1,17 @@
+.textogrande{
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    color : darkblue;
+    font-size: 150%;
+    font-weight: 400;
+    text-align: center;
+
+}
+
+.textonegrita{
+    font-weight: bold;
+}
+
+.textoazul{
+    color: blue;
+    font-weight: bold;
+}

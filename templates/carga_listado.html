@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %} Directorio de Afiliados {% endblock %}
+
+{% block content %}
+     <div class="container">
+         <div class="row">
+             <div class="col-md-1">|1|</div>
+             <div class="col-md-1">|2|</div>
+             <div class="col-md-1">|3|</div>
+             <div class="col-md-1">|4|</div>
+             <div class="col-md-1">|5|</div>
+             <div class="col-md-1">|6|</div>
+             <div class="col-md-1">|7|</div>
+             <div class="col-md-1">|8|</div>
+             <div class="col-md-1">|9|</div>
+             <div class="col-md-1">|10|</div>
+             <div class="col-md-1">|11|</div>
+             <div class="col-md-1">|12|</div>
+         </div>
+     </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-10">
+            {% regroup datos by entidad as lista_datos %}
+                {% for elemento in lista_datos %}
+                    <ul>
+                        <li>
+                            <h1 id="{{ elemento.grouper }}">{{  elemento.grouper }}</h1>
+                            <ul>
+                                {% for instancia in elemento.list %}
+                                <li> <span class="textoazul">Institución:</span> <span class="textonegrita">{{ instancia.institucion }}.</span>
+                                    {%  if instancia.nombre_campus != '' %}
+                                    <span class="textonegrita">{{ instancia.nombre_campus }}.</span>
+                                    {% endif %}
+                                    <br/>
+                                    <span class="textoazul"> Nombre de la Facultad/Escuela:</span> <span class="textonegrita">{{ instancia.nombre_escuela }}.</span> <br/>
+{#                                    <span class="textoazul">Estatus:</span> <span class="textonegrita">{{ instancia.get_estatus_display }}.</span> <br/>#}
+                                    <span class="textoazul">Año de afiliación:</span>
+                                    {% if instancia.acreditacion != '' %}
+                                        <span class="textonegrita">{{ instancia.acreditacion }}.</span>
+                                    {% endif %} <br/>
+                                    <span class="textoazul">Director:</span>  <span class="textonegrita">{{ instancia.nombre_director }}.</span> <br/>
+                                    <span class="textoazul">Correo de contacto:</span> <a href="mailto:{{ instancia.mail_contacto }}">{{ instancia.mail_contacto }}</a> <br/>
+                                    <span class="textoazul">Teléfono:</span>  <span class="textonegrita">{{ instancia.telefono }}.</span> <br/>
+                                    <span class="textoazul">Página institucional:</span> <a href="{{ instancia.sitio_web }}" target="_blank">Sitio web.</a>
+                                </li>
+                                <hr>
+                                {% endfor %}
+                            </ul>
+
+                        </li>
+                    </ul>
+                {% endfor %}
+        </div>
+                {% comment %}<div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">{{ dato.institucion }}.
+                        {% if dato.nombre_campus != '' %}
+                            {{ dato.nombre_campus }}.
+                        {% endif %}
+                    </div>
+                </div>{% endcomment %}
+            <div class="col-md-2"></div>
+
+    </div>
+{% endblock %}
